@@ -1,0 +1,92 @@
+{
+  "name": "chatgptForCDLs",
+  "displayName": "ChatGPT for CDLs",
+  "description": "",
+  "version": "0.1.0",
+  "publisher": "Ivor Berry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivorb/chatgptcdls"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "chatgptCDL.generateQuestions",
+        "title": "Generate KC Question"
+      },
+      {
+        "command": "chatgptCDL.introText",
+        "title": "Generate introduction"
+      },
+      {
+        "command": "chatgptCDL.summaryText",
+        "title": "Generate summary text"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "chatgptCDL.generateQuestions",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "chatgptCDL.introText",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "chatgptCDL.summaryText",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ChatGPT for CDLs",
+      "properties": {
+        "chatgptCDL.chatgptURL": {
+          "type": "string",
+          "default": "",
+          "description": "Enter your URL for Azure OpenAI ChatGPT endpoint"
+        },
+        "chatgptCDL.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Enter your key for Azure OpenAI ChatGPT endpoint"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vscode/test-electron": "^2.2.2",
+    "eslint": "^8.33.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.9"
+  }
+}
